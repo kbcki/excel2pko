@@ -27,4 +27,5 @@ export interface TransferRowProps {
 export interface TransferPropsLineConfig {
   id: keyof TransferRowProps;
   name: string;
+  tooltip?: string;
 }

@@ -21,7 +21,7 @@ export const useGenerateTransfersImport = () => {
         const transferRowProps = Object.keys(columnMappings).reduce(
           (acc, key) => ({
             ...acc,
-            [key]: cells[columnMappings[key]],
+            [key]: cells[columnMappings[key] - 1],
           }),
           {}
         );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dropdown, Option, makeStyles } from "@fluentui/react-components";
+import { Dropdown, Option, Tooltip, makeStyles } from "@fluentui/react-components";
 
 import { TransferPropsLineConfig } from "../../../types";
 import { useAppContext } from "../../../context/AppContext";
@@ -84,7 +84,13 @@ export const ColumnsMapperLine = ({ lineConfig }: ColumnsMapperLineProps) => {
 
   return (
     <div className={styles.container}>
-      <div>{lineConfig.name}</div>
+      {lineConfig.tooltip ? (
+        <Tooltip content={lineConfig.tooltip ?? null} relationship={"description"}>
+          <div>{lineConfig.name}</div>
+        </Tooltip>
+      ) : (
+        <div>{lineConfig.name}</div>
+      )}
       <Dropdown
         className={styles.dropdown}
         selectedOptions={selectedOptions}

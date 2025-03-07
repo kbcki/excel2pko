@@ -1,6 +1,7 @@
 import { TransferPropsLineConfig } from "./types";
 
 export enum Pages {
+  SPLASH = "SPLASH",
   MAPPING = "MAPPING",
   SUMMARY = "SUMMARY",
 }
@@ -9,10 +10,12 @@ export const CONFIG_LINE_PROPS: TransferPropsLineConfig[] = [
   {
     id: "paymentDate",
     name: "Data płatności",
+    tooltip: "W formacie RRRRMMDD.",
   },
   {
     id: "amount",
     name: "Kwota",
+    tooltip: "Kwota przelewu w groszach, bez miejsc po przecinku.",
   },
   {
     id: "senderAccountNumber",

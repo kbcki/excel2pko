@@ -8,6 +8,7 @@ import { useNavigationContext } from "./context/NavigationContext";
 import { Mapping } from "./pages/Mapping/Mapping";
 import { Pages } from "./consts";
 import { Summary } from "./pages/Summary/Summary";
+import { Splash } from './pages/Splash/Splash';
 
 interface AppProps {
   title: string;
@@ -50,6 +51,7 @@ export const App: React.FC<AppProps> = () => {
     <div className={styles.root}>
       <Header />
       <div className={styles.pageContainer}>
+        {currentPage === Pages.SPLASH && <Splash />}
         {currentPage === Pages.MAPPING && <Mapping />}
         {currentPage === Pages.SUMMARY && <Summary />}
       </div>

@@ -3,7 +3,7 @@ import { Button, makeStyles } from "@fluentui/react-components";
 
 import { useNavigationContext } from "../../../context/NavigationContext";
 import { Pages } from "../../../consts";
-import { useGenerateTransfersImport } from '../../../logic/useGenerateTransfersImport';
+import { useGenerateTransfersImport } from "../../../logic/useGenerateTransfersImport";
 
 const useStyles = makeStyles({
   container: {
@@ -26,8 +26,13 @@ export const SummaryButtons = () => {
     generateTransfersImport();
   }, [setCurrentPage, generateTransfersImport]);
 
+  const onBackClick = React.useCallback(() => {
+    setCurrentPage(Pages.SPLASH);
+  }, [setCurrentPage]);
+
   return (
     <div className={styles.container}>
+      <Button onClick={onBackClick}>Wróć</Button>
       <Button className={styles.button} onClick={onSaveClick} appearance="primary">
         Zapisz
       </Button>

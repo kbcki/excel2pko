@@ -2,10 +2,10 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>54af0034-1241-4437-ba11-2afa518a6022</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <ProviderName>excel2pko</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Excel 2 PKO"/>
-  <Description DefaultValue="A template to get started."/>
+  <DisplayName DefaultValue="Eksport do PKO BP"/>
+  <Description DefaultValue="Ten dodatek pozwala w szybki sposób wyeksportować listę przelewów do PKO BP."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
@@ -72,13 +72,13 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
-        <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Task Pane"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Eksport do PKO BP"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue=" "/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Eksport do PKO BP"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded successfully. Go to the HOME tab and click the 'Show Task Pane' button to get started."/>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane"/>
+        <bt:String id="GetStarted.Description" DefaultValue="Ten dodatek pozwala w szybki sposób wyeksportować listę przelewów do PKO BP."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Otwórz panel eksportu"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
