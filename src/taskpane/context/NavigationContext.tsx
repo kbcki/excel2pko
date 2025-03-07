@@ -11,8 +11,7 @@ type NavigationContextProps = {
 const NavigationContext = createContext<NavigationContextProps | undefined>(undefined);
 
 export const NavigationContextProvider = ({ children }: PropsWithChildren) => {
-  const [currentPage, setCurrentPage] = React.useState<Pages>(Pages.SUMMARY);
-  // const [currentPage, setCurrentPage] = React.useState<Pages>(Pages.MAPPING);
+  const [currentPage, setCurrentPage] = React.useState<Pages>(Pages.MAPPING);
 
   return <NavigationContext.Provider value={{ currentPage, setCurrentPage }}>{children}</NavigationContext.Provider>;
 };
@@ -24,4 +23,4 @@ export const useNavigationContext = () => {
   }
 
   return context;
-}
+};

@@ -3,6 +3,7 @@ import { Button, makeStyles } from "@fluentui/react-components";
 
 import { useNavigationContext } from "../../../context/NavigationContext";
 import { Pages } from "../../../consts";
+import { useGenerateTransfersImport } from '../../../logic/useGenerateTransfersImport';
 
 const useStyles = makeStyles({
   container: {
@@ -18,10 +19,12 @@ const useStyles = makeStyles({
 export const SummaryButtons = () => {
   const styles = useStyles();
   const { setCurrentPage } = useNavigationContext();
+  const { generateTransfersImport } = useGenerateTransfersImport();
 
   const onSaveClick = React.useCallback(() => {
     setCurrentPage(Pages.SUMMARY);
-  }, [setCurrentPage]);
+    generateTransfersImport();
+  }, [setCurrentPage, generateTransfersImport]);
 
   return (
     <div className={styles.container}>
