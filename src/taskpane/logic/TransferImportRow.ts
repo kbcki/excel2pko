@@ -1,3 +1,5 @@
+import { TransferRowProps } from "../types";
+
 export class TransferImportRow {
   // [01] Typ komunikatu
   //      110 – polecenie przelewu
@@ -7,7 +9,7 @@ export class TransferImportRow {
   paymentDate: string;
 
   // [03] Kwota przelewu w groszach, bez przecinków i separatorów
-  amout: string;
+  amount: string;
 
   // [04] Bank zleceniodawcy (numer wg NBP)
   //      1020 – PKO BP
@@ -59,18 +61,10 @@ export class TransferImportRow {
   //      "53" przelew Split / Polecenie zapłaty Split
   documentType = "51";
 
-  constructor(params: {
-    paymentDate: string;
-    amout: string;
-    senderAccountNumber: string;
-    receiverAccountNumber: string;
-    senderData: [string, string, string, string];
-    receiverData: [string, string, string, string];
-    details: string[];
-  }) {
+  constructor(params: TransferRowProps) {
     this.type = "110";
     this.paymentDate = params.paymentDate;
-    this.amout = params.amout;
+    this.amount = params.amount;
 
     this.senderAccountNumber = this.formatBankCode(params.senderAccountNumber);
     this.senderBankCode = this.extractBankCode(this.senderAccountNumber);
@@ -80,9 +74,20 @@ export class TransferImportRow {
     this.receiverAccountNumber = this.formatBankCode(params.receiverAccountNumber);
     this.receiverBankCode = this.extractBankCode(this.receiverAccountNumber);
 
-    this.senderData = params.senderData.join("|");
-    this.receiverData = params.receiverData.join("|");
-    this.details = params.details.join("|");
+    this.senderData = [
+      params.senderNameLine1 || "",
+      params.senderNameLine2 || "",
+      params.senderAddressLine1 || "",
+      params.senderAddressLine2 || "",
+    ].join("|");
+
+    this.receiverData = [
+      params.receiverNameLine1 || "",
+      params.receiverNameLine2 || "",
+      params.receiverAddressLine1 || "",
+      params.receiverAddressLine2 || "",
+    ].join("|");
+    this.details = (params.details || "").split("\n").join("|");
 
     this.transferCostsCoveredBy = "0";
 
@@ -93,7 +98,7 @@ export class TransferImportRow {
     const cols = [
       this.type, // [01] Typ komunikatu
       this.paymentDate, // [02] Data płatności w formacie RRRRMMDD
-      this.amout, // [03] Kwota przelewu w groszach, bez przecinków i separatorów
+      this.amount, // [03] Kwota przelewu w groszach, bez przecinków i separatorów
       this.senderBankCode, // [04] Bank zleceniodawcy (numer wg NBP)
       this.subtype, // [05] Podtyp komunikatu
       this.senderAccountNumber, // [06] Numer rachunku zleceniodawcy
@@ -111,11 +116,19 @@ export class TransferImportRow {
     return cols.join(",");
   }
 
-  private formatBankCode(bankCode: string): string {
+  private formatBankCode(bankCode?: string): string {
+    if (!bankCode) {
+      return "";
+    }
+
     return bankCode.split(" ").join("");
   }
 
-  private extractBankCode(accountNumber: string): string {
+  private extractBankCode(accountNumber?: string): string {
+    if (!accountNumber) {
+      return "";
+    }
+
     return accountNumber.slice(2, 10);
   }
 }

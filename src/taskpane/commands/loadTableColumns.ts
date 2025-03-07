@@ -4,9 +4,6 @@ import { Column } from "../types";
 
 export const loadTableColumns = async (tableId: string): Promise<Column[]> => {
   return await Excel.run(async (context) => {
-    // Office.context.document.get
-    // File
-
     const result = [];
 
     const table = context.workbook.tables.getItem(tableId);

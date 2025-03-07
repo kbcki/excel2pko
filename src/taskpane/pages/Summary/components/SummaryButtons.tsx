@@ -2,6 +2,7 @@ import { Button, makeStyles } from "@fluentui/react-components";
 import * as React from "react";
 
 import { useNavigationContext } from "../../../context/NavigationContext";
+import { useGenerateTransfersImport } from "../../../logic/useGenerateTransfersImport";
 import { Pages } from "../../../consts";
 
 const useStyles = makeStyles({
@@ -17,9 +18,11 @@ export const SummaryButtons = () => {
   const styles = useStyles();
 
   const { setCurrentPage } = useNavigationContext();
+  const { generateTransfersImport } = useGenerateTransfersImport();
   const onBackClick = React.useCallback(() => {
     setCurrentPage(Pages.MAPPING);
-  }, [setCurrentPage]);
+    generateTransfersImport();
+  }, [setCurrentPage, generateTransfersImport]);
 
   return (
     <div className={styles.container}>

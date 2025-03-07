@@ -2,6 +2,8 @@ import { makeStyles } from "@fluentui/react-components";
 import * as React from "react";
 
 import { SummaryButtons } from "./components/SummaryButtons";
+import { Result } from "./components/Result";
+import { UtilButtons } from "./components/UtilButtons";
 
 const useStyles = makeStyles({
   container: {
@@ -12,6 +14,9 @@ const useStyles = makeStyles({
   buttonsContainer: {
     marginTop: "auto",
   },
+  info__section: {
+    padding: "16px",
+  },
 });
 
 export const Summary = () => {
@@ -19,7 +24,11 @@ export const Summary = () => {
 
   return (
     <div className={styles.container}>
-      <span>Summary</span>
+      <section className={styles.info__section}>
+        Skopiuj zawartość poniższego pola, wklej ją do Notatnika. Taki plik możesz zaimportować do systemu bankowego.
+      </section>
+      <Result />
+      <UtilButtons />
       <div className={styles.buttonsContainer}>
         <SummaryButtons />
       </div>

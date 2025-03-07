@@ -14,6 +14,8 @@ type AppContextProps = {
   columnMappings: Record<keyof TransferRowProps, string | undefined>;
   setColumnMappings: (mappings: Record<string, string>) => void;
   patchColumnMapping: (key: keyof TransferRowProps, value: string) => void;
+  result: string | undefined;
+  setResult: (result: string | undefined) => void;
 };
 
 const createEmptyMapping = () => ({
@@ -39,6 +41,7 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
   const [selectedTable, _setSelectedTable] = useState<Table | undefined>(undefined);
   const [loadedColumns, setLoadedColumns] = useState<Column[] | undefined>(undefined);
   const [columnMappings, setColumnMappings] = useState<Record<string, string>>(createEmptyMapping());
+  const [result, setResult] = useState<string | undefined>(undefined);
 
   const setSelectedTable = React.useCallback(
     async (table: Table | undefined) => {
@@ -46,14 +49,17 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
       if (!table) {
         setLoadedColumns(undefined);
         setColumnMappings(createEmptyMapping());
+        setResult(undefined);
+
         return;
       }
 
       const columns = await loadTableColumns(table.id);
       setLoadedColumns(columns);
       setColumnMappings(createEmptyMapping());
+      setResult(undefined);
     },
-    [_setSelectedTable, setLoadedColumns, setColumnMappings]
+    [_setSelectedTable, setLoadedColumns, setColumnMappings, setResult]
   );
 
   const patchColumnMapping = React.useCallback(
@@ -78,6 +84,8 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
         columnMappings,
         setColumnMappings,
         patchColumnMapping,
+        result,
+        setResult,
       }}
     >
       {children}
