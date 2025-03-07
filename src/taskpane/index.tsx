@@ -4,6 +4,7 @@ import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 
 import { App } from "./App";
 import { AppContextProvider } from "./context/AppContext";
+import { NavigationContextProvider } from "./context/NavigationContext";
 
 /* global document, Office, module, require, HTMLElement */
 
@@ -15,9 +16,11 @@ const root = rootElement ? createRoot(rootElement) : undefined;
 /* Render application after Office initializes */
 Office.onReady(() => {
   root?.render(
-    <FluentProvider theme={webLightTheme}>
+    <FluentProvider style={{ height: "100%" }} theme={webLightTheme}>
       <AppContextProvider>
-        <App title={title} />
+        <NavigationContextProvider>
+          <App title={title} />
+        </NavigationContextProvider>
       </AppContextProvider>
     </FluentProvider>
   );

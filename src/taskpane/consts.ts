@@ -1,5 +1,10 @@
 import { TransferPropsLineConfig } from "./types";
 
+export enum Pages {
+  MAPPING = "MAPPING",
+  SUMMARY = "SUMMARY",
+}
+
 export const CONFIG_LINE_PROPS: TransferPropsLineConfig[] = [
   {
     id: "paymentDate",

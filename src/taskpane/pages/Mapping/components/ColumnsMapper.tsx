@@ -1,7 +1,7 @@
 import * as React from "react";
 import { makeStyles } from "@fluentui/react-components";
 
-import { CONFIG_LINE_PROPS } from "../consts";
+import { CONFIG_LINE_PROPS } from "../../../consts";
 import { ColumnsMapperLine } from "./ColumnsMapperLine";
 
 const useStyles = makeStyles({

@@ -3,10 +3,11 @@ import { makeStyles, tokens } from "@fluentui/react-components";
 
 import { getTables } from "./commands/getTables";
 import { useAppContext } from "./context/AppContext";
-import { Header } from "./components/Header";
-import { TablesList } from "./components/TablesList";
-import { ColumnsMapper } from "./components/ColumnsMapper";
-import { SummaryButtons } from "./components/SummaryButtons";
+import { Header } from "./pages/Mapping/components/Header";
+import { useNavigationContext } from "./context/NavigationContext";
+import { Mapping } from "./pages/Mapping/Mapping";
+import { Pages } from "./consts";
+import { Summary } from "./pages/Summary/Summary";
 
 interface AppProps {
   title: string;
@@ -15,18 +16,24 @@ interface AppProps {
 const useStyles = makeStyles({
   root: {
     background: tokens.colorNeutralBackground2,
-    minHeight: "100vh",
+    height: "100%",
     margin: "0",
     padding: "0",
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+    gap: "0",
   },
-  info__section: {
-    padding: "16px",
+  pageContainer: {
+    flex: 1,
+    overflow: "auto",
   },
 });
 
 export const App: React.FC<AppProps> = () => {
   const styles = useStyles();
   const { setTables, setSelectedTable } = useAppContext();
+  const { currentPage } = useNavigationContext();
 
   React.useEffect(() => {
     getTables().then((tables) => {
@@ -42,12 +49,10 @@ export const App: React.FC<AppProps> = () => {
   return (
     <div className={styles.root}>
       <Header />
-      <section className={styles.info__section}>
-        Wybierz tabelę, z której chcesz wyeksportować listę przelewów. Następnie zmapuj odpowiednie kolumny.
-      </section>
-      <TablesList />
-      <ColumnsMapper />
-      <SummaryButtons />
+      <div className={styles.pageContainer}>
+        {currentPage === Pages.MAPPING && <Mapping />}
+        {currentPage === Pages.SUMMARY && <Summary />}
+      </div>
     </div>
   );
 };

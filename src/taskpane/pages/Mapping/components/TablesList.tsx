@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Dropdown, Option, Button, makeStyles } from "@fluentui/react-components";
 
-import { useAppContext } from "../context/AppContext";
-import { getTables } from "../commands/getTables";
-import { loadTableColumns } from '../commands/loadTableColumns';
+import { useAppContext } from "../../../context/AppContext";
+import { getTables } from "../../../commands/getTables";
+import { loadTableColumns } from '../../../commands/loadTableColumns';
 
 const useStyles = makeStyles({
   container: {
